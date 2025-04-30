@@ -1,0 +1,34 @@
+\documentclass{ltjsarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+
+\begin{document}
+
+• p.14 $U(t)$ の計算
+
+時間並進の演算子は $ke^{-iHt}\mathcal{K}$ なので、 $x_{0}$ から $x$ に遷移する確率振幅 $U(t)$ は
+
+\begin{align*}
+U(t)&=\langle x|e^{-iHt}|x_{0}\rangle \\
+&=\langle x|e^{-i\frac{p^{2}}{2m}}|x_{0}\rangle \\
+&=\int\frac{d^{3}p}{(2\pi)^{3}}\langle x|e^{-i\frac{p^{2}}{2m}}|p\rangle\langle p|x_{0}\rangle \quad \text{完全性関係を利用} \\
+&=\int\frac{d^{3}p}{(2\pi)^{3}}e^{-i\frac{p^{2}}{2m}}\langle x|p\rangle\langle p|x_{0}\rangle \\
+&=\int\frac{d^{3}p}{(2\pi)^{3}}e^{-i\frac{p^{2}}{2m}}e^{ip\cdot(x-x_{0})} \quad (\langle x|p\rangle=e^{ix\cdot p}) \\
+&=\int\frac{d^{3}p}{(2\pi)^{3}}e^{-i\frac{t}{2m}(p+\frac{m}{t}(x-x_{0}))^{2}}e^{i\frac{m}{2t}(x-x_{0})^{2}} \\
+&=\frac{1}{(2\pi)^{3}}(\frac{2m\pi}{it})^{\frac{3}{2}}e^{i\frac{m}{2t}(x-x_{0})^{2}} \quad \text{ガウス積分} \\
+&=\left(\frac{m}{2\pi it}\right)^{\frac{3}{2}}e^{i\frac{m}{2t}(x-x_{0})^{2}}
+\end{align*}
+
+4行目では運動量の固有値を取るので、指数関数はブラケットの外に出すことができる。
+
+• p.14二つ目の式の計算
+
+\begin{align*}
+\int d^{3}pe^{-it\sqrt{p^{2}+m^{2}}}e^{ip\cdot(x-x_{0})} 
+&=\int_{0}^{2\pi}d\varphi\int_{0}^{\infty}p^{2}dp\int_{-1}^{1}d\mu e^{-it\sqrt{p^{2}+m^{2}}}e^{ip|x-x_{0}|\mu} \\
+&=2\pi\int_{0}^{\infty}p^{2}dp\frac{1}{ip|x-x_{0}|}e^{-it\sqrt{p^{2}+m^{2}}}(e^{ip|x-x_{0}|}-e^{-ip|x-x_{0}|}) \\
+&=4\pi\int_{0}^{\infty}dpp~\sin(p|x-x_{0}|)e^{-it\sqrt{p^{2}+m^{2}}}
+\end{align*}
+
+\end{document}
