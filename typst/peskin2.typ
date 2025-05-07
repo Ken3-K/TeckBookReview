@@ -151,4 +151,40 @@ $
   phi(x) &= integral (d^3p)/(2 pi)^3 1 / sqrt(2 omega_vb(p)) ( a_vb(p) e^(i vb(p) dot vb(x)) + a_vb(p)^dagger e^(- i vb(p) dot vb(x)))  \ 
   pi(x) &= integral (d^3p)/(2 pi)^3 ( -i) sqrt(omega_vb(p) / 2) ( a_vb(p) e^(i vb(p) dot vb(x)) - a_vb(p)^dagger e^(- i vb(p) dot vb(x)))
 $
-と表せるのである。ただし、意味ありげに出てきた$1 / sqrt(2 omega_vb(p)) "と" ( -i) sqrt(omega_vb(p) / 2)$はこれらが相対論的に不変である（ローレンツ変換で変化しない）ために必要
+と表せるのである。ただし、意味ありげに出てきた$1 / sqrt(2 omega_vb(p)) "と" ( -i) sqrt(omega_vb(p) / 2)$はこれらが相対論的に不変である（ローレンツ変換で変化しない）ために必要。
+
+- (2.30)の計算
+$
+  phi(x) &= integral (d^3p)/(2 pi)^3 1 / sqrt(2 omega_vb(p)) ( a_vb(p)  + a_vb(-p)^dagger ) e^(i vb(p) dot vb(x)) \ 
+  pi(x) &= integral (d^3p')/(2 pi)^3 ( -i) sqrt(omega_vb(p) / 2) ( a_vb(p')  - a_vb(-p')^dagger )e^(i vb(p') dot vb(x)) \
+$
+と$pi(x)$の積分変数を$p'$と変えてから代入し、交換関係
+$
+  [a_p, a^dagger_p'] = (2 pi)^3 delta^(3)(p - p'), & [a_p, a_p'] = [a^dagger_p, a^dagger_p'] = 0
+$
+を使って整理すると
+$
+  [phi(x), pi(x')]
+  &= integral (d^3 p d^3 p') / ((2 pi)^6) (-i)/2 sqrt(omega_p'/omega_p) ([a^dagger_(-p), a_p'] + [a_p, - a^dagger_(-p)]) e^i(p dot x + p' dot x') \
+  &= integral (d^3 p d^3 p') / ((2 pi)^6) (-i)/2 sqrt(omega_p'/omega_p) { (-1) (2 pi)^3 delta^(3)(p + p') - (2 pi)^3 delta^(3)(p + p')} e^i(p dot x + p' dot x') \
+  &= integral (d^3 p) / ((2 pi)^3) i sqrt(omega_(-p)/omega_p) e^(i p(x - x')) \
+  &= i/(2 pi)^3 integral d^3 p e^(i p(x - x')) \
+  &= i delta^(3) (x - x')
+$
+ここで、$omega_p = omega_(-p)$であることに注意
+
+- (2.31)の計算
+これも(2.30)の計算と同様に$phi, pi$の片方の積分変数を$p'$に変えてから代入すればよく、
+$
+  nabla phi = integral (d^3p)/(2 pi)^3 (i p) / sqrt(2 omega_vb(p)) ( a_vb(p)  + a_vb(-p)^dagger ) e^(i vb(p) dot vb(x)) 
+$
+であるから
+$
+  H 
+  &= integral d^3 x[ 1/2 pi^2  + 1/2 (nabla phi)^2 + 1/2 m^2 phi^2] \
+  &= integral (d^3 p d^3 p') / ((2 pi)^6) e^(i(p + p') dot x) {
+    1/2 (sqrt(omega_p omega_p'))/2 (a_p - a^dagger_(-p))(a_(p') - a^dagger_(-p'))
+    + 1/2 (-p dot p' + m^2)/(4 sqrt(omega_p omega_p'))(a_p + a^dagger_(-p))(a_p' + a^dagger_(-p'))
+    } \
+  &= 
+$
