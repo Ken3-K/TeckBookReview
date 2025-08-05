@@ -1,6 +1,10 @@
 // Document Boxes Library
 // A collection of styled box functions for academic documents
 
+// Problem counter for automatic numbering
+#let problem-counter = counter("problem")
+#let solution-counter = counter("solution")
+
 // Title function
 #let title(content) = {
   set align(center)
@@ -8,8 +12,13 @@
   [#content]
 }
 
-// Problem box function with feature label
-#let problem(label: "例題", feature: none, content) = {
+// Problem box function with feature label (supports single or multiple items)
+#let problem(label: "例題", number: none, feature: none, auto-number: true, ..content) = {
+  // Auto-increment counter if auto-number is enabled and no manual number provided
+  if auto-number and number == none {
+    problem-counter.step()
+  }
+  
   if feature != none [
     #block(
       fill: rgb("#e6f3ff"),
@@ -27,12 +36,30 @@
     inset: 12pt,
     width: 100%,
   )[
-    *#label:* #content
+    *#label#if number != none [ #number] else if auto-number [ #context problem-counter.display()]:* 
+    
+    #let items = content.pos()
+    #if items.len() == 1 [
+      // Single problem - direct content
+      #items.first()
+    ] else [
+      // Multiple problems - numbered list
+      #for (i, item) in items.enumerate() [
+        (#numbering("1", i + 1)) #item
+        
+        #if i < items.len() - 1 [ \ ]
+      ]
+    ]
   ]
 }
 
 // Solution box function with advanced page break handling
-#let solution(label: "解答", content) = {
+#let solution(label: "解答", number: none, auto-number: true, ..content) = {
+  // Auto-increment counter if auto-number is enabled and no manual number provided
+  if auto-number and number == none {
+    solution-counter.step()
+  }
+  
   // Styling config
   let config = (
     fill: rgb("#f8fff8"),
@@ -60,9 +87,22 @@
   )[#body]
 
   // Three-part structure
-  box(("top", "left", "right"), ("top",), (top: config.inset, bottom: 8pt), false, [*#label:*])
+  box(("top", "left", "right"), ("top",), (top: config.inset, bottom: 8pt), false, [*#label#if number != none [ #number] else if auto-number [ #context solution-counter.display()]:*])
   v(config.gap)
-  box(("left", "right"), (), (top: 8pt, bottom: 8pt), true, content)
+  box(("left", "right"), (), (top: 8pt, bottom: 8pt), true, [
+    #let items = content.pos()
+    #if items.len() == 1 [
+      // Single solution - direct content
+      #items.first()
+    ] else [
+      // Multiple solutions - numbered list
+      #for (i, item) in items.enumerate() [
+        (#numbering("1", i + 1)) #item
+        
+        #if i < items.len() - 1 [ \ ]
+      ]
+    ]
+  ])
   v(config.gap)
   box(("bottom", "left", "right"), ("bottom",), (bottom: config.inset, top: 8pt), false, [])
 }
