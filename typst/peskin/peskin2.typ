@@ -179,12 +179,11 @@ $
   nabla phi = integral (d^3p)/(2 pi)^3 (i p) / sqrt(2 omega_vb(p)) ( a_vb(p)  + a_vb(-p)^dagger ) e^(i vb(p) dot vb(x)) 
 $
 であるから
+
 $
   H 
   &= integral d^3 x[ 1/2 pi^2  + 1/2 (nabla phi)^2 + 1/2 m^2 phi^2] \
   &= integral (d^3 p d^3 p') / ((2 pi)^6) e^(i(p + p') dot x) {
-    1/2 (sqrt(omega_p omega_p'))/2 (a_p - a^dagger_(-p))(a_(p') - a^dagger_(-p'))
-    + 1/2 (-p dot p' + m^2)/(4 sqrt(omega_p omega_p'))(a_p + a^dagger_(-p))(a_p' + a^dagger_(-p'))
+    1/2 (sqrt(omega_p omega_p'))/2 (a_p - a^dagger_(-p))(a_(p') - a^dagger_(-p')) + 1/2 (-p dot p' + m^2)/(2 sqrt(omega_p omega_p'))(a_p + a^dagger_(-p))(a_p' + a^dagger_(-p'))
     } \
-  &= 
 $
