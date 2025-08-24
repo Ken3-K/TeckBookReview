@@ -121,7 +121,7 @@
   feature: "微分",
   [次の関数を$x$で微分しなさい。
     $
-      (1) x^3 quad (2) x e^x quad (3) x log x quad (4) sin x quad (5) cos x \ (6) tan x quad (7) log(3x^2 + 4) quad (8) log(sin x)
+      (1) x^3 quad (2) x e^x quad (3) x log x quad (4) sin x quad (5) cos x \ (6) tan x quad (7) log(3x^2 + 4) quad (8) log(sin x) quad (9) sin(a x)
     $
   ]
 )
@@ -158,6 +158,13 @@
   (8) $(log(sin x))'$ （合成関数の微分法）
   $
     (log(sin x))' = 1/(sin x) · (sin x)' = 1/(sin x) · cos x = (cos x)/(sin x)
+  $
+
+  (9) $sin (a x)'$
+  $
+    (sin(a x))' &= cos(a x) dot (a x)' \
+    &= cos(a x) dot a \
+    &= a cos(a x)
   $
 ])
 
@@ -578,25 +585,6 @@ $
   $
 
   これを$N$について解くと：
-  $
-    N(M - N_0) = N_0 (M - N) e^(r t)
-  $
-  $
-    N M - N N_0 = N_0 M e^(r t) - N N_0 e^(r t)
-  $
-  $
-    N M + N N_0 e^(r t) = N N_0 + N_0 M e^(r t)
-  $
-  $
-    N(M + N_0 e^(r t)) = N_0 M e^(r t)
-  $
-
-  よって：
-  $
-    N(t) = (N_0 M e^(r t))/(M + N_0 e^(r t))
-  $
-
-  分子分母を$e^(r t)$で割ると：
   $
     N(t) = (N_0 M)/(M e^(-r t) + N_0) = M/(1 + (M/N_0 - 1) e^(-r t))
   $

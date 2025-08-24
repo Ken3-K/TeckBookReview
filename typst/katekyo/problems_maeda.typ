@@ -27,7 +27,7 @@
 
 #problem([
   $sin theta + cos theta = 1/sqrt(2)$のとき、
-  $ 2 sin theta cos theta， sin 3theta + cos 3 theta $の値を求めよ。
+  $ 2 sin theta cos theta， sin^3 theta + cos^3 theta $の値を求めよ。
 ])
 
 #problem(
