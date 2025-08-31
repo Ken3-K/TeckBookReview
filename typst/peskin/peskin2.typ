@@ -181,9 +181,60 @@ $
 であるから
 
 $
-  H 
-  &= integral d^3 x[ 1/2 pi^2  + 1/2 (nabla phi)^2 + 1/2 m^2 phi^2] \
-  &= integral (d^3 p d^3 p') / ((2 pi)^6) e^(i(p + p') dot x) {
-    1/2 (sqrt(omega_p omega_p'))/2 (a_p - a^dagger_(-p))(a_(p') - a^dagger_(-p')) + 1/2 (-p dot p' + m^2)/(2 sqrt(omega_p omega_p'))(a_p + a^dagger_(-p))(a_p' + a^dagger_(-p'))
-    } \
+  H & = integral d^3 x[ 1/2 pi^2 + 1/2 (nabla phi)^2 + 1/2 m^2 phi^2] \
+    & = integral d^3 x integral (d^3 p d^3 p') / ((2 pi)^6) \
+    & quad e^(i(p + p') dot x) {
+        1/2 (sqrt(omega_p omega_p'))/2 (a_p - a^dagger_(-p))(a_(p') - a^dagger_(-p')) + 1/2 (-p dot p' + m^2)/(2 sqrt(omega_p omega_p'))(a_p + a^dagger_(-p))(a_p' + a^dagger_(-p'))
+      }
 $
+ここで
+$
+  integral d^3 x e^(i(p + p') dot x) = (2 pi)^3 delta(p+p')
+$
+であるから, $x$について積分した後$p'$について積分し、$omega_p = omega_(-p)$と$p^2 + m^2 = omega_p^2$であることに注意すると
+
+$
+  H
+  &= integral (d^3 p)/(2 pi )^3 omega_p/4 [-(a_p - a_(-p)^dagger)(a_(-p) - a_p^dagger) + (a_p + a_(-p)^dagger)(a_(-p) + a_p^dagger)] \
+  &=integral (d^3 p)/(2 pi )^3 omega_p/4 dot 2(a_p a_p^dagger + a_(-p)^dagger a_(-p))
+$
+第二項目の積分変数を$p -> -p$と変えれば、
+$
+  H & =integral (d^3 p)/(2 pi )^3 omega_p/2 (a_p a_p^dagger + a_p^dagger a_p) \
+    & =integral (d^3 p)/(2 pi )^3 omega_p (a_p a_p^dagger + 1/2 [a_p , a_p^dagger])
+$
+
+- (2.31)の計算
+$
+  [A B, C] = A[B, C] + [A, C] B
+$
+を使う。
+
+(2.30)式の第二項のデルタ関数を無視すると
+$
+  [H, a_p^dagger] & = integral (d^3 p')/(2 pi )^3 omega_p' [a_p' a_p'^dagger, a_p^dagger] \
+$
+$
+  [a_p' a_p'^dagger, a_p^dagger] = a_p' [a_p'^dagger, a_p^dagger] + [a_p', a_p^dagger] a_p'^dagger = (2 pi)^3 delta(p' - p) a_p'^dagger
+$
+なので
+$
+  [H, a_p^dagger] & = omega_p a_p^dagger
+$
+
+- (2.33)の計算
+$
+  vb(P) & = - integral d^3 x pi nabla phi.alt \
+  & = -integral (d^3 p d^3 p')/(2 pi )^3 delta(p + p') (p)/2 sqrt(omega_p/omega_p') (a_p - a_(-p)^dagger)(a_p' + a_(-p')^dagger) \
+  &= - integral (d^3 p)/(2 pi )^3 (p)/2 (a_p a_(-p) + a_p a_(p)^dagger - a_(-p)^dagger a_(-p) - a_(-p)^dagger a_p^dagger)
+$
+ここで、$p a_p a_(-p)$と$p a_(-p)^dagger a_p^dagger$は奇関数であるから、積分すると消える。したがって
+$
+  vb(P) & = - integral (d^3 p)/(2 pi )^3 (p)/2 (a_p a_p^dagger - a_(-p)^dagger a_(-p))
+$
+また第二項は$p -> -p$と積分変数を変更すると
+$
+  vb(P) & = integral (d^3 p)/(2 pi )^3 (p)/2 (a_p^dagger a_p - a_p a_p^dagger) \
+        & = integral (d^3 p)/(2 pi )^3 p (a_p^dagger a_p + 1/2 [a_p, a_p^dagger])
+$
+最後の交換関係から出てくるデルタ関数はp.22上部の議論から無視できるので、(2.33)式を得る。

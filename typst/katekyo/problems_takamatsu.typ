@@ -145,6 +145,8 @@
   (6) $(tan x)'$ 
   $
     (tan x)' &= ((sin x) / (cos x))' \
+    & = (sin x)' / (cos x) + sin x 1 / (cos x)' \
+    & = (cos x) / (cos x) + sin x dot (- (cos x)' / (cos x)^2) \
     &= (cos x · cos x - sin x · (-sin x))/(cos x)^2 \
     &= (cos^2 x + sin^2 x)/(cos^2 x) \
     &= 1/(cos^2 x)
@@ -162,8 +164,7 @@
 
   (9) $sin (a x)'$
   $
-    (sin(a x))' &= cos(a x) dot (a x)' \
-    &= cos(a x) dot a \
+    (sin(a x))' & = cos(a x) dot (a x)' \
     &= a cos(a x)
   $
 ])
@@ -171,56 +172,56 @@
 #pagebreak()
 
 // 波動方程式
-#problem([
-  a, b, を定数として
-  $x = a sin omega t + b cos omega t$
-  のとき、
-  $
-    x = sqrt(a^2 + b^2) sin(omega t + phi.alt)
-  $
-  とかけることを示せ。
-],[
-  $x$が満たす2階微分方程式を一つ求めよ。
-])
+// #problem([
+//   a, b, を定数として
+//   $x = a sin omega t + b cos omega t$
+//   のとき、
+//   $
+//     x = sqrt(a^2 + b^2) sin(omega t + phi.alt)
+//   $
+//   とかけることを示せ。
+// ],[
+//   $x$が満たす2階微分方程式を一つ求めよ。
+// ])
 
-#solution([
-  三角関数の合成公式を用いて証明する。
+// #solution([
+//   三角関数の合成公式を用いて証明する。
 
-  $x = a sin omega t + b cos omega t$ において、
-  $A = sqrt(a^2 + b^2)$ とおき、$phi.alt$ を
-  $
-    cos phi.alt = a/A, quad sin phi.alt = b/A
-  $
-  を満たす角とする。
+//   $x = a sin omega t + b cos omega t$ において、
+//   $A = sqrt(a^2 + b^2)$ とおき、$phi.alt$ を
+//   $
+//     cos phi.alt = a/A, quad sin phi.alt = b/A
+//   $
+//   を満たす角とする。
 
-  このとき、
-  $
-    x &= a sin omega t + b cos omega t \
-      &= A(a/A sin omega t + b/A cos omega t) \
-      &= A(cos phi.alt sin omega t + sin phi.alt cos omega t) \
-      &= A sin(omega t + phi.alt)
-  $
+//   このとき、
+//   $
+//     x &= a sin omega t + b cos omega t \
+//       &= A(a/A sin omega t + b/A cos omega t) \
+//       &= A(cos phi.alt sin omega t + sin phi.alt cos omega t) \
+//       &= A sin(omega t + phi.alt)
+//   $
 
-  したがって、$x = sqrt(a^2 + b^2) sin(omega t + phi.alt)$ が成り立つ。
-  ],
-  [
-  $x = a sin omega t + b cos omega t$ を $t$ で微分すると：
-  $
-    (d x)/(d t) = a omega cos omega t - b omega sin omega t
-  $
+//   したがって、$x = sqrt(a^2 + b^2) sin(omega t + phi.alt)$ が成り立つ。
+//   ],
+//   [
+//   $x = a sin omega t + b cos omega t$ を $t$ で微分すると：
+//   $
+//     (d x)/(d t) = a omega cos omega t - b omega sin omega t
+//   $
 
-  さらに微分すると：
-  $
-    (d^2 x)/(d t^2) = -a omega^2 sin omega t - b omega^2 cos omega t = -omega^2(a sin omega t + b cos omega t) = -omega^2 x
-  $
+//   さらに微分すると：
+//   $
+//     (d^2 x)/(d t^2) = -a omega^2 sin omega t - b omega^2 cos omega t = -omega^2(a sin omega t + b cos omega t) = -omega^2 x
+//   $
 
-  したがって、$x$ が満たす2階微分方程式は：
-  $
-    (d^2 x)/(d t^2) + omega^2 x = 0
-  $
-])
+//   したがって、$x$ が満たす2階微分方程式は：
+//   $
+//     (d^2 x)/(d t^2) + omega^2 x = 0
+//   $
+// ])
 
-#pagebreak()
+// #pagebreak()
 // 増減表
 #problem(feature: "増減表",[
   次の関数の増減表を作成し、グラフの概形をかけ。
@@ -296,12 +297,16 @@
 
   (2) $integral log x d x$ （部分積分を使用）
   
-  $integral log x · 1 d x$ において、$log x$ を微分し、$1$ を積分する
   $
-    integral log x d x &= log x · x - integral (log x)' · x d x \
-    &= x log x - integral 1/x · x d x \
-    &= x log x - integral 1 d x \
-    &= x log x - x + C
+    integral log x d x = integral log x · 1 d x = integral log x dot (x)' d x
+  $
+  と考えて部分積分をすると
+  $
+    integral log x d x & = integral log x dot (x)' d x \
+                       & = log x · x - integral (log x)' · x d x \
+                       & = x log x - integral 1/x · x d x \
+                       & = x log x - integral 1 d x \
+                       & = x log x - x + C
   $
 
   (3) $integral x e^x d x$ （部分積分を使用）
@@ -319,8 +324,7 @@
   $(cos x)' = -sin x$ を用いて、
   $
     integral (sin x)/(cos x) d x &= -integral (cos x)'/(cos x) d x \
-    &= -log|cos x| + C \
-    &= log|sec x| + C
+    & = -log|cos x| + C 
   $
 
     (5) $integral (6x)/(3x^2 + 4) d x$ （分子が分母の微分）
@@ -343,11 +347,9 @@
   $d x = a cos theta d theta$, $sqrt(a^2 - x^2) = a cos theta$
   $
     integral 1/sqrt(a^2 - x^2) d x &= integral 1/(a cos theta) · a cos theta d theta \
-    &= integral d theta = theta + C \
-    &= arcsin(x/a) + C
+    & = integral d theta = theta + C 
   $
-  
-  ここで$arcsin x$とは$sin x$の逆関数、つまり$x, y$が$y = sin x$を満たすとき、$x = arcsin y$と書ける関数である。
+  ただし、$theta$は$ sin theta = x /a $となるように取っている。
 ])
 
 #pagebreak()
@@ -404,11 +406,11 @@ $
   $
     (d N) / (d t) = - gamma N
   $
-],[
-  人口などは次のロジスティック方程式で近似的に表せる。これを解け。
-  $
-    (d N) / (d t) = r N times (M - N)/M
-  $
+// ],[
+//   人口などは次のロジスティック方程式で近似的に表せる。これを解け。
+//   $
+//     (d N) / (d t) = r N times (M - N)/M
+//   $
 ])
 
 #solution([
@@ -535,61 +537,61 @@ $
   $
 
   これは指数関数的減衰を表している。
-],[
-  ロジスティック方程式とその解
+// ],[
+//   ロジスティック方程式とその解
 
-  微分方程式：
-  $
-    (d N)/(d t) = r N (M - N)/M
-  $
+//   微分方程式：
+//   $
+//     (d N)/(d t) = r N (M - N)/M
+//   $
 
-  変数分離して：
-  $
-    (M d N)/(N(M - N)) = r d t
-  $
+//   変数分離して：
+//   $
+//     (M d N)/(N(M - N)) = r d t
+//   $
 
-  左辺を部分分数分解する：
-  $
-    M/(N(M - N)) = A/N + B/(M - N)
-  $
+//   左辺を部分分数分解する：
+//   $
+//     M/(N(M - N)) = A/N + B/(M - N)
+//   $
 
-  $M = A(M - N) + B N = A M + (B - A) N$より、$A = 1, B = 1$
+//   $M = A(M - N) + B N = A M + (B - A) N$より、$A = 1, B = 1$
 
-  したがって：
-  $
-    M/(N(M - N)) = 1/N + 1/(M - N)
-  $
+//   したがって：
+//   $
+//     M/(N(M - N)) = 1/N + 1/(M - N)
+//   $
 
-  積分すると：
-  $
-    integral (1/N + 1/(M - N)) d N = integral r d t
-  $
-  $
-    log|N| - log|M - N| = r t + C
-  $
-  $
-    log|N/(M - N)| = r t + C
-  $
-  $
-    N/(M - N) = A e^(r t)
-  $
+//   積分すると：
+//   $
+//     integral (1/N + 1/(M - N)) d N = integral r d t
+//   $
+//   $
+//     log|N| - log|M - N| = r t + C
+//   $
+//   $
+//     log|N/(M - N)| = r t + C
+//   $
+//   $
+//     N/(M - N) = A e^(r t)
+//   $
 
-  初期条件$t = 0$で$N = N_0$を用いると：
-  $
-    A = N_0/(M - N_0)
-  $
+//   初期条件$t = 0$で$N = N_0$を用いると：
+//   $
+//     A = N_0/(M - N_0)
+//   $
 
-  したがって：
-  $
-    N/(M - N) = (N_0/(M - N_0)) e^(r t)
-  $
+//   したがって：
+//   $
+//     N/(M - N) = (N_0/(M - N_0)) e^(r t)
+//   $
 
-  これを$N$について解くと：
-  $
-    N(t) = (N_0 M)/(M e^(-r t) + N_0) = M/(1 + (M/N_0 - 1) e^(-r t))
-  $
+//   これを$N$について解くと：
+//   $
+//     N(t) = (N_0 M)/(M e^(-r t) + N_0) = M/(1 + (M/N_0 - 1) e^(-r t))
+//   $
 
-  $t → ∞$で$N → M$となる。
+//   $t → ∞$で$N → M$となる。
 
 ])
 
