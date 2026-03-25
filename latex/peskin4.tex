@@ -1,0 +1,65 @@
+% !TeX root = ../peskin_main.tex
+
+\section{Interacting Fields and the S-Matrix    }
+\label{sec:interacting}
+
+% (4.18)の計算
+相互作用描像における時間発展の演算子
+\[
+    U(t, t_0) = e^{iH_0 (t - t_0)} e^{-iH(t-t_0)}
+\]
+の時間微分を求めよ。
+
+% 解
+\[
+    \begin{aligned}
+        i \frac{\partial}{\partial t} U(t, t_0)
+         & = i \frac{\partial}{\partial t} \left( e^{iH_0 (t - t_0)} e^{-iH(t-t_0)} \right)                    \\
+         & = i \left( iH_0 e^{iH_0 (t - t_0)} e^{-iH(t-t_0)} + e^{iH_0 (t - t_0)} (-iH) e^{-iH(t-t_0)} \right) \\
+         & = e^{iH_0 (t - t_0)} (H - H_0) e^{-iH(t-t_0)}                                                       \\
+         & = e^{iH_0 (t - t_0)} H_{\mathrm{int}} e^{- iH_0 (t - t_0)} e^{iH_0 (t - t_0)} e^{-iH(t-t_0)}        \\
+         & = H_{I}(t) U(t, t_0)
+    \end{aligned}
+\]
+ただし、
+\[
+    H_{I}(t) = e^{iH_0 (t - t_0)} H_{\mathrm{int}} e^{- iH_0 (t - t_0)}  = \int d^3 x \frac{\lambda}{4!} \phi_{I}^4(x)
+\]。
+
+
+% (4.29)の計算
+\[
+    i \frac{\partial}{\partial t} U(t, t_0) = H_{I}(t) U(t, t_0), \quad U(t_0, t_0) = 1, H_{I}(t) = \int d^3 x \frac{\lambda}{4!} \phi_{I}^4(x)
+\]
+より、\( U(t, t_0) \)を\(\lambda\)のべき級数で展開せよ。
+
+% 解
+初期条件 \( U(t_0, t_0) = 1 \) より、
+\[
+    U(t, t_0) = 1 - i\int_{t_0}^{t} dt' H_{I}(t') U(t', t_0)
+\]
+右辺の\(U\)に右辺全体を代入すると
+\[
+    \begin{aligned}
+         U(t, t_0) 
+         & = 1 - i\int_{t_0}^{t} dt' H_{I}(t') \left( 1 - i\int_{t_0}^{t'} dt'' H_{I}(t'') U(t'', t_0) \right) \\
+         & = 1 - i\int_{t_0}^{t} dt' H_{I}(t') + (-i)^2 \int_{t_0}^{t} dt' \int_{t_0}^{t'} dt'' H_{I}(t') H_{I}(t'') U(t'', t_0)
+    \end{aligned}
+\]
+これを延々と繰り返すと、
+\[
+    \begin{aligned}
+         U(t, t_0) 
+         & = 1 - i\int_{t_0}^{t} dt' H_{I}(t') + (-i)^2 \int_{t_0}^{t} dt' \int_{t_0}^{t'} dt'' H_{I}(t') H_{I}(t'') + \cdots \\
+         & = 1 + \sum_{n=1}^{\infty} (-i)^n \int_{t_0}^{t} dt_1 \int_{t_0}^{t_1} dt_2 \cdots \int_{t_0}^{t_{n-1}} dt_n H_{I}(t_1) H_{I}(t_2) \cdots H_{I}(t_n)
+    \end{aligned}
+\]
+が得られる。\(H_I\)は\(\lambda\)を一つ含むため、これが\(\lambda\)のべき級数展開であることがわかる。
+
+% (4.22)の計算
+\[
+    U(t, t_0) = = 1 + \sum_{n=1}^{\infty} (-i)^n \int_{t_0}^{t} dt_1 \int_{t_0}^{t_1} dt_2 \cdots \int_{t_0}^{t_{n-1}} dt_n H_{I}(t_1) H_{I}(t_2) \cdots H_{I}(t_n)
+\]
+を、時間順序積を用いて表せ。
+
+% 解
