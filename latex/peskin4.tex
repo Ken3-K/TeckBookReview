@@ -26,7 +26,7 @@
     H_{I}(t) = e^{iH_0 (t - t_0)} H_{\mathrm{int}} e^{- iH_0 (t - t_0)}  = \int d^3 x \frac{\lambda}{4!} \phi_{I}^4(x)
 \]。
 
-
+\dotfill
 % (4.29)の計算
 \[
     i \frac{\partial}{\partial t} U(t, t_0) = H_{I}(t) U(t, t_0), \quad U(t_0, t_0) = 1, H_{I}(t) = \int d^3 x \frac{\lambda}{4!} \phi_{I}^4(x)
@@ -56,10 +56,53 @@
 \]
 が得られる。\(H_I\)は\(\lambda\)を一つ含むため、これが\(\lambda\)のべき級数展開であることがわかる。
 
+\dotfill
 % (4.22)の計算
+
 \[
     U(t, t_0) = = 1 + \sum_{n=1}^{\infty} (-i)^n \int_{t_0}^{t} dt_1 \int_{t_0}^{t_1} dt_2 \cdots \int_{t_0}^{t_{n-1}} dt_n H_{I}(t_1) H_{I}(t_2) \cdots H_{I}(t_n)
 \]
 を、時間順序積を用いて表せ。
 
 % 解
+重積分の初歩を思い出すと、二重積分
+\[
+    \int_{a}^{b} dx \int_{a}^{x} dy f(x) f(y)
+\]
+は、\(x\) の範囲が \([a, b]\)、\(y\)の範囲が\([a, b]\)の正方形を線分\(x=y\)で二等分したうちの、\(x>y\)の部分（下三角領域）での積分である。
+
+一方、\(x<y\)の部分（上三角領域）での積分は、
+\[
+    \int_{a}^{b} dy \int_{a}^{y} dx f(x) f(y)
+\]
+である。これらを足し合わせると、四角形全体での積分となる。
+ここで、上式の積分変数\(x, y\)を入れ替えると
+\[
+    \int_{a}^{b} dx \int_{a}^{x} dy f(y) f(x)
+\]
+となり、元の積分から\(f(x), f(y)\)の順序が入れ替わった積分となる。
+このことから、元の積分は
+\[
+    \int_{a}^{b} dx \int_{a}^{x} dy f(x) f(y) = \frac{1}{2} \int_{a}^{b} dx \int_{a}^{b} dy T \left\{f(x) f(y)\right\}
+\]
+と表すことができる。ただし、\(T\)は時間順序積であり、\(x, y\)を時間とみなしている。
+
+これを\(n\)重積分に拡張すると、
+\[
+    \int_{t_0}^{t} dt_1 \int_{t_0}^{t_1} dt_2 \cdots \int_{t_0}^{t_{n-1}} dt_n H_I(t_1) H_I(t_2) \cdots H_I(t_n) = \frac{1}{n!} \int_{t_0}^{t} dt_1 \int_{t_0}^{t} dt_2 \cdots \int_{t_0}^{t} dt_n T \left\{H_I(t_1) H_I(t_2) \cdots H_I(t_n)\right\}
+\]
+となる。
+したがって、\(U(t, t_0)\)は
+\[
+    U(t, t_0) = 1 + \sum_{n=1}^{\infty} \frac{(-i)^n}{n!} \int_{t_0}^{t} dt_1 \int_{t_0}^{t} dt_2 \cdots \int_{t_0}^{t} dt_n T \left\{H_I(t_1) H_I(t_2) \cdots H_I(t_n)\right\}
+\]
+と表すことができる。
+さらに、右辺を指数関数のテイラー展開と見ることで
+\[
+    U(t, t_0) = T\left[ \exp \left( -i \int_{t_0}^{t} dt' H_I(t') \right) \right]
+\]
+となる。
+
+\dotfill
+
+% 
